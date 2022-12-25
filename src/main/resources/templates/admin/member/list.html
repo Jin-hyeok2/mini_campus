@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>관리자 화면</title>
+    <style>
+        .list table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .list table th, .list table td {
+            border: solid 1px black
+        }
+    </style>
+</head>
+<body>
+
+<h1>관리자 회원 관리</h1>
+<!--<div th:replace="/fragments/layout.html :: fragment-body-menu" />-->
+
+<div>
+    <a href="/admin/main.do">관리자 메인</a>
+    |
+    <a href="/admin/member/list.do">회원 관리 목록</a>
+    |
+    <a href="/admin/member/list.do">카테고리 관리</a>
+    |
+    <a href="/admin/member/list.do">강의 관리</a>
+    |
+    <a href="/member/logout">로그아웃</a>
+</div>
+
+<div class="list">
+
+    <div>
+        <form action="get">
+            <select name="searchType">
+                <option value="all">전체</option>
+                <option value="userId">아이디</option>
+                <option value="userName">이름</option>
+                <option value="phone">연락처</option>
+            </select>
+            <input type="text" name="searchValue"/>
+            <button type="submit">검색</button>
+        </form>
+    </div>
+
+    <table>
+        <thead>
+        <tr>
+            <th>NO</th>
+            <th>아이디(이메일)</th>
+            <th>이름</th>
+            <th>연락처</th>
+            <th>이메일 인증 여부</th>
+            <th>가입일</th>
+            <th>관리자 여부</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:each="x : ${list}">
+                <td>1</td>
+                <td th:text="${x.userId}">example@example.com</td>
+                <td th:text="${x.userName}">홍길동</td>
+                <td th:text="${x.phone}">010-1111-1111</td>
+                <td>
+                    <p th:if="${x.emailAuthYn}">Y</p>
+                    <p th:if="${x.emailAuthYn eq false}">N</p>
+                </td>
+                <td>
+                    <p th:text="${x.registeredAt}">2022.01.01</p>
+                </td>
+                <td>
+                    <p th:if="${x.adminYn}">Y</p>
+                    <p th:if="${x.adminYn eq false}">N</p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

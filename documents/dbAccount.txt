@@ -1,0 +1,2 @@
+id : manicampus_user
+pw : 1q2w3e4r

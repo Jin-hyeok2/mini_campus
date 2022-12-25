@@ -1,5 +1,6 @@
-package com.zerobase.festlms;
+package com.zerobase.festlms.configuration;
 
+import com.zerobase.festlms.FestlmsApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
